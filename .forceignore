@@ -7,3 +7,6 @@ package.xml
 
 **/.eslintrc.json
 **/__tests__/**
+
+# Ignore Profile changes
+**profile
