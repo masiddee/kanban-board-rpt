@@ -17,6 +17,10 @@ export default class TaskBoard extends LightningElement {
         {id: 4, title: "Waiting on someone else", name: "waitingOnSomeoneTasksLane", className: "waitingOnSomeoneTask", tasks: []},
         {id: 5, title: "Deferred", name: "deferredTasksLane", className: "deferredTask", tasks: []}
     ];
+
+    renderedCallback() {
+        
+    }
     
     // Initializes task records, lanes, etc.
     @wire(getTasks, { recordId: '$recordId' })
@@ -83,10 +87,6 @@ export default class TaskBoard extends LightningElement {
         this.taskNewLaneStatus = event.currentTarget.dataset.lane;
         this.template.querySelector('c-task-card.moving').newLane(this.taskNewLaneStatus);
         this.template.querySelector('c-task-card.moving').classList.remove('moving');
-    }
-
-    handleDragging(event) {
-        event.target.classList.add('moving');
     }
 
     handleTaskUpdate(event) {

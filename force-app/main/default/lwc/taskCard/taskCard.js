@@ -46,7 +46,8 @@ export default class TaskCard extends LightningElement {
             .then(() => {
                 console.log('Success! New status value: ' + JSON.stringify(taskToSave));
                 const selectedEvent = new CustomEvent('taskupdate', {
-                    detail: { taskId: this.task.Id, oldStatus: currentStatus }
+                    detail: { taskId: this.task.Id, oldStatus: currentStatus },
+                    bubbles: true
                 });
                 this.dispatchEvent(selectedEvent);
             })
@@ -56,7 +57,7 @@ export default class TaskCard extends LightningElement {
     }
 
     handleDragStart() {
-        this.dispatchEvent(new CustomEvent('dragging'));
+        this.dispatchEvent(new CustomEvent('dragging', { bubbles: true }));
     }
 
     get taskDescription() {
