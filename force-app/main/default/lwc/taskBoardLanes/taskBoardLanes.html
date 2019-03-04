@@ -1,7 +1,12 @@
 <template>
     <!-- ** NOTE: ** Wasn't able to get to this, but will try my hand at it on my own time. -->
 
-    <lightning-layout multiple-rows="true">
+    <lightning-layout multiple-rows="true"
+        class="task-lane"
+        data-lane={lane.title}
+        ondragover={handleDragOver}
+        ondragleave={handleDragLeave}
+        ondrop={handleDrop}>
         <lightning-layout-item size="12">
             <lightning-card class={lane.name}>
                 <div slot="title">{lane.title}</div>

@@ -41,6 +41,8 @@ export default class TaskCard extends LightningElement {
     @api
     newLane(newLaneStatus) {
         const currentStatus = this.task.Status;
+        console.log("newLaneStatus method: " + currentStatus);
+        
         let taskToSave = Object.assign({}, this.task, {Status: newLaneStatus});
         saveTasks({ tasks: [taskToSave] })
             .then(() => {

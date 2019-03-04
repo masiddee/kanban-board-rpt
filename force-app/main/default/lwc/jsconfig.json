@@ -6,11 +6,11 @@
             "c/task-board": [
                 "taskBoard/taskBoard.js"
             ],
-            "c/task-card": [
-                "taskCard/taskCard.js"
-            ],
             "c/task-board-lanes": [
                 "taskBoardLanes/taskBoardLanes.js"
+            ],
+            "c/task-card": [
+                "taskCard/taskCard.js"
             ]
         }
     },

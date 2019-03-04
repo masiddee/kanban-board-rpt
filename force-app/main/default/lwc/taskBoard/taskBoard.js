@@ -6,10 +6,9 @@ export default class TaskBoard extends LightningElement {
     //Allows the component to be aware of the ID of the record (i.e. the Account)
     //that it is embedded on
     @api recordId;
+    @track taskId;
     @track newStatus;
     @track oldStatus;
-    @track taskId;
-    taskNewLaneStatus;
     @track taskLanes = [
         {id: 1, title: "Not Started", name: "notStartedTasksLane", className: "notStartedTask", tasks: []},
         {id: 2, title: "In Progress", name: "inProgressTasksLane", className: "inProgressTask", tasks: []},
@@ -40,7 +39,7 @@ export default class TaskBoard extends LightningElement {
         }
     }
 
-    @wire(getUpdatedTasks, { recordId: '$recordId', taskId: '$taskId' , newStatus: '$newStatus' })
+    @wire(getUpdatedTasks, { recordId: '$recordId', taskId: '$taskId', newStatus: '$newStatus' })
     updatedTasks({ error, data }) {
         if (data) {
             // If data, then filter out any tasks with old status
@@ -70,28 +69,9 @@ export default class TaskBoard extends LightningElement {
         }
     }
 
-    handleDragOver(event) {
-        event.preventDefault();
-        event.currentTarget.classList.add('dragged-over');
-    }
-
-    handleDragLeave(event) {
-        event.preventDefault();
-        event.currentTarget.classList.remove('dragged-over');
-    }
-
-    handleDrop(event) {
-        event.preventDefault();
-        event.currentTarget.classList.remove('dragged-over');
-
-        this.taskNewLaneStatus = event.currentTarget.dataset.lane;
-        this.template.querySelector('c-task-card.moving').newLane(this.taskNewLaneStatus);
-        this.template.querySelector('c-task-card.moving').classList.remove('moving');
-    }
-
-    handleTaskUpdate(event) {
-        this.newStatus = this.taskNewLaneStatus;
-        this.taskId = event.detail.taskId;
-        this.oldStatus = event.detail.oldStatus;
+    handleUpdatedTask(event) {
+        this.taskId = event.details.taskId;
+        this.newStatus = event.details.newStatus;
+        this.oldStatus = event.details.oldStatus;
     }
 }

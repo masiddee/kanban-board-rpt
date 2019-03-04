@@ -8,13 +8,8 @@
             <template for:each={taskLanes} for:item="lane">
                 <lightning-layout-item key={lane.id}
                     padding="horizontal-small"
-                    size="2"
-                    class="task-lane"
-                    data-lane={lane.title}
-                    ondragover={handleDragOver}
-                    ondragleave={handleDragLeave}
-                    ondrop={handleDrop}>
-                    <c-task-board-lanes lane={lane} tasks={lane.tasks}></c-task-board-lanes>
+                    size="2">
+                    <c-task-board-lanes lane={lane} tasks={lane.tasks} onupdatedtask={handleUpdatedTask}></c-task-board-lanes>
                 </lightning-layout-item>
             </template>
 
